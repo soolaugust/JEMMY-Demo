@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- 配置mysql驱动jar，用了绝对路径 -->
+	<classPathEntry 
+		location="C:\Users\Administrator.HY-20151130UYNX\.m2\repository\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar"/>
+	
+	<context id="soolaugust_mysql_tables" targetRuntime="myBatis3">
+	
+	<!-- 下面的配置控制是为了防止生成的代码中有太多注释 -->
+	<commentGenerator>
+		<property name="suppressAllComments" value="true"/>
+		<property name="suppressDate" value="true"/>
+	</commentGenerator>
+	
+	<!-- 数据库连接 -->
+	<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+		connectionURL="jdbc:mysql://localhost:3306/jemmy-user?characterEncoding=utf8"
+		userId="root"
+		password="password">
+	</jdbcConnection>
+	
+	<javaTypeResolver>
+		<property name="forceBigDecimals" value="false"/>
+	</javaTypeResolver>
+	
+	<!-- 数据库对应的model层 -->
+	<javaModelGenerator targetPackage="com.soolaugust.model" targetProject="src">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+    
+    <!-- sql 映射文件 -->
+    <sqlMapGenerator targetPackage="com.soolaugust.mapper"  targetProject="src">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+    
+    <!-- mapper接口，在ibatis2中为dao层 -->
+     <javaClientGenerator type="XMLMAPPER" targetPackage="com.soolaugust.inter"  targetProject="src">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+    
+     <!-- 要对那些数据表进行生成操作，必须要有一个. -->
+      <table schema="jemmy-user" tableName="userinfo" domainObjectName="UserInfo" 
+        enableCountByExample="false" enableUpdateByExample="false"
+        enableDeleteByExample="false" enableSelectByExample="false"
+        selectByExampleQueryId="false">     
+    </table>
+     
+    </context>
+</generatorConfiguration>
